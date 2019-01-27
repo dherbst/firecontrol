@@ -1,7 +1,7 @@
-# fire-control
+# firecontrol
 Power the fire control bell by using a raspberry pi with GPIO and relays.
 
-## Fire-Control requirements
+## Firecontrol requirements
 
 On one of 8 pins of the gpio interface:
 * 1 pulse every second
@@ -15,6 +15,6 @@ On one of 8 pins of the gpio interface:
 
 # Installation
 
-Once you have the raspi set up with the gpio board, telnet into the raspi and clone this repo, then install the fire-control system.
+Once you have the raspi set up with the gpio board, telnet into the raspi and clone this repo, then install the firecontrol system.
 
     python setup.py install

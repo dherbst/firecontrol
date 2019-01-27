@@ -24,13 +24,13 @@
 from setuptools import setup
 
 setup(
-    name='fire-control',
+    name='firecontrol',
     version='0.0.1',
     description='Fire Control utility',
     author='Darrel Herbst',
     author_email='dherbst@gmail.com',
-    url='https://github.com/dherbst/fire-control',
+    url='https://github.com/dherbst/firecontrol',
     scripts=[
-        'scripts/fire-control'
+        'scripts/firecontrol'
     ]
 )
