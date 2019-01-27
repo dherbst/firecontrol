@@ -1,0 +1,5 @@
+#! /usr/bin/env python
+
+VERSION = (0,0,1)
+
+print('fire-control ' + '.'.join(map(str,VERSION)))
