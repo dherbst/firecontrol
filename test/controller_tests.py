@@ -19,19 +19,4 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-
-from setuptools import setup
-
-setup(
-    name='firecontrol',
-    version='0.0.1',
-    description='Fire Control utility',
-    author='Darrel Herbst',
-    author_email='dherbst@gmail.com',
-    url='https://github.com/dherbst/firecontrol',
-    packages=['firecontrol'],
-    scripts=[
-        'scripts/firecontrol'
-    ]
-)
+import unittest

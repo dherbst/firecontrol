@@ -1,3 +1,13 @@
+"""
+firecontrol holds the controller for the bell.
+
+Example:
+
+   from firecontrol import Controller
+   c = Controller()
+   c.start()
+
+"""
 # MIT License
 #
 # Copyright (c) 2018-2019 Darrel Herbst
@@ -21,17 +31,13 @@
 # SOFTWARE.
 
 
-from setuptools import setup
+from threading import Timer
 
-setup(
-    name='firecontrol',
-    version='0.0.1',
-    description='Fire Control utility',
-    author='Darrel Herbst',
-    author_email='dherbst@gmail.com',
-    url='https://github.com/dherbst/firecontrol',
-    packages=['firecontrol'],
-    scripts=[
-        'scripts/firecontrol'
-    ]
-)
+
+class Controller:
+    """Controller starts timers to ring the bell at intervals."""
+
+
+    def start(self):
+        """start is a function that starts the threads."""
+        print('Starting...')

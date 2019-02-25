@@ -21,17 +21,12 @@
 # SOFTWARE.
 
 
-from setuptools import setup
+.PHONY=*
 
-setup(
-    name='firecontrol',
-    version='0.0.1',
-    description='Fire Control utility',
-    author='Darrel Herbst',
-    author_email='dherbst@gmail.com',
-    url='https://github.com/dherbst/firecontrol',
-    packages=['firecontrol'],
-    scripts=[
-        'scripts/firecontrol'
-    ]
-)
+all: lint
+
+lint:
+	pylint firecontrol
+
+install:
+	pip install -r requirements.txt
