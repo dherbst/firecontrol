@@ -15,6 +15,20 @@ On one of 8 pins of the gpio interface:
 
 # Installation
 
-Once you have the raspi set up with the gpio board, telnet into the raspi and clone this repo, then install the firecontrol system.
+1. ssh into the raspi
+    ssh pi@<ip-address>
+    password: raspberry
+    pi@<pi-address>:~ $
 
-    python setup.py install
+2. Clone the repo
+
+    git clone https://github.com:dherbst/firecontrol.git
+
+3. Go into the folder and build and install
+
+    cd firecontrol
+    make build install
+
+4. This should have installed the firecontrol command.  If you run it, it will start.
+
+   $ firecontrol
