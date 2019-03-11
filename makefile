@@ -1,4 +1,4 @@
-.PHONY=*
+.PHONY=all build
 # MIT License
 #
 # Copyright (c) 2018-2019 Darrel Herbst
@@ -21,14 +21,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+GOLANG=golang:1.12
 
+all: pull-golang clean get build
 
-GOLANG=golang:1.11
-
-all: pull-golang build
+clean:
+	rm -rf vendor
 
 pull-golang:
 	docker pull ${GOLANG}
+
+get:
+	mkdir -p vendor/gobot.io/x vendor/github.com/hashicorp vendor/github.com/pkg vendor/github.com/sigurn vendor/periph.io/x
+	cd vendor/gobot.io/x && git clone https://github.com/hybridgroup/gobot && cd gobot && git checkout v1.12.0
+	cd vendor/github.com/hashicorp && git clone https://github.com/hashicorp/go-multierror && git clone https://github.com/hashicorp/errwrap
+	cd vendor/github.com/pkg && git clone https://github.com/pkg/errors
+	cd vendor/github.com/sigurn && git clone https://github.com/sigurn/utils && git clone https://github.com/sigurn/crc8
+	cd vendor/periph.io/x && git clone https://github.com/google/periph
 
 build:
 	mkdir -p bin
