@@ -1,7 +1,7 @@
-.PHONY=all build clean pull-golang get build runlocal
+.PHONY=all build clean pull-golang get build runlocal install
 # MIT License
 #
-# Copyright (c) 2018-2019 Darrel Herbst
+# Copyright (c) 2018-2023 Darrel Herbst
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -37,3 +37,6 @@ build:
 
 runlocal:
 	docker run -it --rm -v ${PWD}:/go/src/github.com/dherbst/firecontrol -w /go/src/github.com/dherbst/firecontrol ${GOLANG} bin/firecontrold
+
+install:
+	cp bin/firecontrold /usr/local/bin/firecontrold
