@@ -1,21 +1,42 @@
-package firecontrol
+package main
 
 import (
 	"log"
 	"time"
+
+	"gobot.io/x/gobot"
+	"gobot.io/x/gobot/drivers/gpio"
+	"gobot.io/x/gobot/platforms/raspi"
 )
 
 // StartServer begins the loop for signalling the gpio pins.
 func StartServer() error {
-	go RunPinLoop(1*time.Second, 7)
-	go RunPinLoop(5*time.Second, 8)
-	go RunPinLoop(10*time.Second, 9)
+	r := raspi.NewAdaptor()
+	led := gpio.NewLedDriver(r, "7")
 
-	go RunPin3Loop(15*time.Second, 10)
-	go RunPin3Loop(20*time.Second, 11)
-	go RunPin3Loop(30*time.Second, 12)
-	go RunPin3Loop(40*time.Second, 13)
-	go RunPin3Loop(600*time.Second, 14)
+	work := func() {
+		gobot.Every(1*time.Second, func() {
+			led.Toggle()
+		})
+	}
+
+	robot := gobot.NewRobot("blinkBot",
+		[]gobot.Connection{r},
+		[]gobot.Device{led},
+		work,
+	)
+
+	robot.Start()
+
+	go RunPinLoop(1*time.Second, 23)
+	//go RunPinLoop(5*time.Second, 8)
+	//go RunPinLoop(10*time.Second, 9)
+
+	//go RunPin3Loop(15*time.Second, 10)
+	//go RunPin3Loop(20*time.Second, 11)
+	//go RunPin3Loop(30*time.Second, 12)
+	//go RunPin3Loop(40*time.Second, 13)
+	//go RunPin3Loop(600*time.Second, 14)
 
 	return nil
 }

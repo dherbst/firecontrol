@@ -1,4 +1,4 @@
-.PHONY=all build
+.PHONY=all build clean pull-golang get build runlocal
 # MIT License
 #
 # Copyright (c) 2018-2019 Darrel Herbst
@@ -21,27 +21,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-GOLANG=golang:1.12
+GOLANG=golang:1.20
 
 all: pull-golang clean get build
 
 clean:
-	rm -rf vendor
+	rm bin/firecontrold
 
 pull-golang:
 	docker pull ${GOLANG}
 
-get:
-	mkdir -p vendor/gobot.io/x vendor/github.com/hashicorp vendor/github.com/pkg vendor/github.com/sigurn vendor/periph.io/x
-	cd vendor/gobot.io/x && git clone https://github.com/hybridgroup/gobot && cd gobot && git checkout v1.12.0
-	cd vendor/github.com/hashicorp && git clone https://github.com/hashicorp/go-multierror && git clone https://github.com/hashicorp/errwrap
-	cd vendor/github.com/pkg && git clone https://github.com/pkg/errors
-	cd vendor/github.com/sigurn && git clone https://github.com/sigurn/utils && git clone https://github.com/sigurn/crc8
-	cd vendor/periph.io/x && git clone https://github.com/google/periph
-
 build:
 	mkdir -p bin
-	docker run -it --rm -v ${PWD}:/go/src/github.com/dherbst/firecontrol -w /go/src/github.com/dherbst/firecontrol ${GOLANG} go build -o bin/firecontrold cmd/firecontrold/firecontrold.go
+	docker run -it --rm -v ${PWD}:/go/src/github.com/dherbst/firecontrol -w /go/src/github.com/dherbst/firecontrol ${GOLANG} go build -o bin/firecontrold *.go
 
 runlocal:
 	docker run -it --rm -v ${PWD}:/go/src/github.com/dherbst/firecontrol -w /go/src/github.com/dherbst/firecontrol ${GOLANG} bin/firecontrold
